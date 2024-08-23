@@ -1,27 +1,25 @@
-# Marionet Interface
+# Marionette Interface
 
-## How can we track the movement of a marionet?
+## How can we track the movement of a marionette?
 
 ### Flex Sensors?
 
-By using [Flex Sensors](https://en.wikipedia.org/wiki/Flex_sensor) as the joints of a marionette, we can sense it's movements. This has some advantages like a relatively easy setup by connecting all sensors to a ADC converter and e.g. to an ESP32 microcontroller. Disadvantage is, that the joint's movements depend on the flexibility of the Flex Sensors. The joints of a marionet are usually made of fabric, leather or strings, which is more flexible than the material of Flex Sensors. The unique, characterstical movement of the marionet would disappear. Another disadvantage is that the Flex Sensors only have one dimension, which is fine for e.g. the elbow joints, but does not work for the neck, the shoulder or other body parts.
+By using [Flex Sensors](https://en.wikipedia.org/wiki/Flex_sensor) as the joints of a marionette, we can sense it's movements. This has some advantages like a relatively easy setup by connecting all sensors to a ADC converter and e.g. to an ESP32 microcontroller. Disadvantage is, that the joint's movements depend on the flexibility of the Flex Sensors. The joints of a marionette are usually made of fabric, leather or strings, which is more flexible than the material of Flex Sensors. The unique, characterstical movement of the marionette would disappear. Another disadvantage is that the Flex Sensors only have one dimension, which is fine for e.g. the elbow joints, but does not work for the neck, the shoulder or other body parts.
+
 ![Principle of a puppet with flex sensors](04_DOCUMENTATION/puppet_with_flex_sensors.png)
-![Marionet joint](04_DOCUMENTATION/marionet_joint.png)
-
-
-
+![marionette joint](04_DOCUMENTATION/marionet_joint.png)
 
 ### Camera Tracking?
 
-Another idea is to use camera tracking. We tested a Microsoft Kinect, which detected the marionet only *sometimes*. Another option would be the Stereolabs Zed2, not tested at the moment. Third option is Googles MediaPipe which did a great job in another project.
+Another idea is to use camera tracking. We tested a Microsoft Kinect, which detected the marionette only *sometimes*. Another option would be the Stereolabs Zed2, not tested at the moment. Third option is Googles MediaPipe which did a great job in another project.
 
 The downsides of all camera tracking setups (with a single camera) are:
 
 * the puppeteers need to stay within the viewport of the camera
 * we only get 2D-data (unless a stereoscopic or ToF Sensor like the Microsoft Kinect would work)
-* puppeteers need to pay attention to not obscure the marionet from the camera
+* puppeteers need to pay attention to not obscure the marionette from the camera
 
-It would be possible to use a camera array, but the setup, adjustment and evaluation of the data gets complex. And we still want to get realtime tracking data. But our biggest downside is that the puppeteers need to stay within the viewport of the camera and therefore would loose freedom while playing. A bigger camera viewport (wide-angle lenses or camera more far away) would mean a smaller image of the marionet in the camera frame and therefore less resolution for body-tracking)
+It would be possible to use a camera array, but the setup, adjustment and evaluation of the data gets complex. And we still want to get realtime tracking data. But our biggest downside is that the puppeteers need to stay within the viewport of the camera and therefore would loose freedom while playing. A bigger camera viewport (wide-angle lenses or camera more far away) would mean a smaller image of the marionette in the camera frame and therefore less resolution for body-tracking)
 
 ### 9-DOF-Sensors!
 
@@ -67,7 +65,7 @@ After a first research, I get two of the [BNO085](https://www.adafruit.com/produ
 
 He was so kind to create an [issue on github](https://github.com/adafruit/Adafruit_BNO08x/issues/32) and also to write a note in the product page, but for our project we need another sensor. Adafruit has a [list of it's 9-DOF-sensors](https://www.adafruit.com/search?q=9-dof) as well as a [list of troublesome I2C sensors](https://learn.adafruit.com/i2c-addresses/troublesome-chips).
 
-“Can’t I just use SPI to connect the sensors?”, you may ask. Of course you could but you would need more cables (six in total) which makes the marionet more stiff and I would like to keep the simple Stemma plug’n’play connectors. Also I don’t know if Adafruit’s library reliably supports multiple BNO085 via SPI.
+“Can’t I just use SPI to connect the sensors?”, you may ask. Of course you could but you would need more cables (six in total) which makes the marionette more stiff and I would like to keep the simple Stemma plug’n’play connectors. Also I don’t know if Adafruit’s library reliably supports multiple BNO085 via SPI.
 
 Let’s have a look at the other sensors:
 
@@ -86,11 +84,8 @@ Let’s have a look at the other sensors:
 **MPU-9250** - discontinued
 
 ```
->>> The question which sensor to use is still open! <<<
+>>> The question which 9-DOF sensor to use is still open! <<<
 ```
-
-
-
 
 ## Getting the data into Blender
 
@@ -125,7 +120,7 @@ Finally it looks like this:
 
 We use the basic approach of Forward Kinematic. Inverse Kinematic could only be used if we had positional tracking of the hands/forearms and feed/lower legs. 
 
-The marionet model needs to be hierarchically set up with respective parents and anchor points of the body parts. Only rotation will move the body parts.
+The marionette model needs to be hierarchically set up with respective parents and anchor points of the body parts. Only rotation will move the body parts.
 
 ## Appendix B: Sensor Fusion
 
